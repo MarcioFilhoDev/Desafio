@@ -15,6 +15,7 @@ saldo = 0
 saque = 0
 numero_depositos = 0
 quantidade_saques = 0
+lista_transacoes = ""
 
 # Maximo de 3 saques por dia, no valor maximo de 500 reais
 
@@ -33,7 +34,7 @@ while opcao != 4:
         if valor_depositado <= 0:
             print("Valor a invalido para depositar!")
         else:
-           
+            lista_transacoes += f"Deposito de R$ {valor_depositado:,.2f} reais \n"
             numero_depositos += 1
             saldo += valor_depositado
     elif opcao == 2:
@@ -47,12 +48,17 @@ while opcao != 4:
                 if valor_saque > saldo:
                     print("Saldo insuficiente!")
                 else:
+                    lista_transacoes += f"Saque de R$ {valor_saque:,.2f} reais \n"
                     quantidade_saques += 1
                     saque += valor_saque
     elif opcao == 3:
         saldo_atual = saldo - saque
         print(
             f"""
+== Transações ==
+{lista_transacoes}
+            
+== Extrato Bancario ==
 Saldo da conta: R$ {saldo_atual:,.2f}
 Quantidade de depositos: {numero_depositos}
 Quantidade de saques: {quantidade_saques}
@@ -61,6 +67,6 @@ Quantidade de saques: {quantidade_saques}
     elif opcao == 4:
         print("Operacoes Encerradas.")
         break
-    
+
     else:
-        print('Operacao Invalida.')
+        print("Operacao Invalida.")
